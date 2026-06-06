@@ -1,7 +1,6 @@
-from data.CreateJsonData import checkIfJsonExists
-
+from webSocket.webSocket import webSocket
 def main():
-    checkIfJsonExists()
+    webSocket()
 
 if __name__ == "__main__":
     main()

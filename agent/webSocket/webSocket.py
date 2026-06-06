@@ -32,7 +32,7 @@ def on_message(data):
     print('Mensagem recebida:', data)
    
    
-if __name__ == '__main__':
+def webSocket():
     try:
         # Conecta ao endereço do servidor Node.js
         sio.connect('http://localhost:3001')
