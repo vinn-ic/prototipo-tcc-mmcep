@@ -6,7 +6,7 @@ import os
 
 from datetime import datetime, timezone
 
-disk = psutil.disk_usage('C:')
+disk = psutil.disk_usage('/')
 pcName = platform.node()
 userName = os.getlogin()
 
@@ -29,12 +29,12 @@ def getlastPidName():
    nameP1 = None
    
    for proc in psutil.process_iter(['pid', 'name', 'username', 'create_time']):
-      if(proc.info['username'] == userName):
-         if tmpP1 <= proc.info['create_time']:
-            nameP1 = proc.info['name']
-            tmpP1 = proc.info['create_time']
-         else:
-            pass
+      
+      if tmpP1 <= proc.info['create_time']:
+         nameP1 = proc.info['name']
+         tmpP1 = proc.info['create_time']
+      else:
+         pass
    
    return nameP1
 
