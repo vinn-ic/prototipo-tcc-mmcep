@@ -1,0 +1,2 @@
+psutil
+python-socketio[client]
