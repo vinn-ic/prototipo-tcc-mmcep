@@ -10,18 +10,22 @@ from data.getData import getDataForTeacher
 # Cria o cliente Socket.io
 sio = socketio.Client()
 
-jsonData = checkIfJsonExists()
+
 
 
 @sio.event
 def connect():
-    print("Conectado ao servidor!")
-    sio.emit('agent:init', {'pcName': jsonData["pcName"]})
-    while True:
+    try:
+        jsonData = checkIfJsonExists()
+        print("Conectado ao servidor!")
+        sio.emit('agent:init', {'pcName': jsonData["pcName"]})
+        while True:
         
-        # Assim que conectar, envia um dado de teste
-        sio.emit('agent:data', json.dumps(getDataForTeacher(), default=str))
-        time.sleep(5)
+            # Assim que conectar, envia um dado de teste
+            sio.emit('agent:data', json.dumps(getDataForTeacher(), default=str))
+            time.sleep(5)
+    except Exception as e:
+        print(f"Erro no evento: {e}")        
 
 @sio.event
 def disconnect():
